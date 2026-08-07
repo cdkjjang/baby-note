@@ -3,6 +3,7 @@ import Link from "next/link";
 import VaccineSchedule from "@/components/VaccineSchedule";
 import AdSlot from "@/components/AdSlot";
 import CalcNotes from "@/components/CalcNotes";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "예방접종 일정 계산기 — 생년월일로 표준일정 확인",
@@ -29,12 +30,24 @@ const faq = [
 export default function VaccinePage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faq.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        mainEntity: faq.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      // 검색결과에 "사이트명 > 계산기명" 경로가 표시되도록 한다.
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "예방접종 일정 계산기" },
+        ],
+      },
+    ],
   };
 
   return (
