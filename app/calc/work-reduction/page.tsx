@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CalcGuides from "@/components/CalcGuides";
 import Link from "next/link";
 import WorkReductionCalculator from "@/components/WorkReductionCalculator";
 import AdSlot from "@/components/AdSlot";
@@ -185,6 +186,7 @@ export default function WorkReductionPage() {
           </li>
         </ul>
       </section>
+      <CalcGuides calcHref="/calc/work-reduction" />
     </div>
   );
 }

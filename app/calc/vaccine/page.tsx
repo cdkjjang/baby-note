@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CalcGuides from "@/components/CalcGuides";
 import Link from "next/link";
 import VaccineSchedule from "@/components/VaccineSchedule";
 import AdSlot from "@/components/AdSlot";
@@ -184,6 +185,7 @@ export default function VaccinePage() {
           </li>
         </ul>
       </section>
+      <CalcGuides calcHref="/calc/vaccine" />
     </div>
   );
 }
