@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
+import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import ParentalLeaveCalculator from "@/components/ParentalLeaveCalculator";
 import AdSlot from "@/components/AdSlot";
@@ -188,6 +189,7 @@ export default function ParentalLeavePage() {
         </ul>
       </section>
       <CalcGuides calcHref="/calc/parental-leave" />
+      <RelatedTools calc="/calc/parental-leave" />
     </div>
   );
 }
