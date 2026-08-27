@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
+import NextStep from "@/components/NextStep";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import VaccineSchedule from "@/components/VaccineSchedule";
@@ -64,6 +65,8 @@ export default function VaccinePage() {
         지난 접종과 예정 접종을 시기 순으로 정리합니다.
       </p>
       <VaccineSchedule />
+
+      <NextStep calc="/calc/vaccine" />
 
       <AdSlot slot="vaccine-below-tool" />
 

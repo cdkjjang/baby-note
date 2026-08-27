@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
+import NextStep from "@/components/NextStep";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import WorkReductionCalculator from "@/components/WorkReductionCalculator";
@@ -64,6 +65,8 @@ export default function WorkReductionPage() {
         계산합니다. 완전히 쉬는 대신 짧게 일할 때의 급여를 확인하세요.
       </p>
       <WorkReductionCalculator />
+
+      <NextStep calc="/calc/work-reduction" />
 
       <AdSlot slot="work-reduction-below-tool" />
 

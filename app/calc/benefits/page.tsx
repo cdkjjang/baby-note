@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
+import NextStep from "@/components/NextStep";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import BenefitsCalculator from "@/components/BenefitsCalculator";
@@ -64,6 +65,8 @@ export default function BenefitsPage() {
         현금성 지원 총액을 보여드립니다.
       </p>
       <BenefitsCalculator />
+
+      <NextStep calc="/calc/benefits" />
 
       <AdSlot slot="benefits-below-tool" />
 

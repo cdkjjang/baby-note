@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
+import NextStep from "@/components/NextStep";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import ParentalLeaveCalculator from "@/components/ParentalLeaveCalculator";
@@ -64,6 +65,8 @@ export default function ParentalLeavePage() {
         총액을 계산합니다. 부모가 함께 쓰는 6+6 제도도 선택할 수 있습니다.
       </p>
       <ParentalLeaveCalculator />
+
+      <NextStep calc="/calc/parental-leave" />
 
       <AdSlot slot="parental-leave-below-tool" />
 
