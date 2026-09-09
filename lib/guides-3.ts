@@ -87,7 +87,7 @@ export const guides3: Guide[] = [
         a: "휴직 중 유예됐던 건강보험료가 정산되는 것입니다. 없어진 것이 아니라 미뤄진 금액입니다. 부담되면 분할 납부가 가능한지 문의해 보세요.",
       },
     ],
-    related: ["parental-leave-order", "work-reduction-guide"],
+    related: ["parental-leave-2026"],
     cta: { href: "/calc/parental-leave", label: "육아휴직 급여 계산하기" },
   },
 ];

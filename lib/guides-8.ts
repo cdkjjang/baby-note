@@ -105,11 +105,7 @@ export const guides8: Guide[] = [
         a: "미사용 연차는 퇴사 시 수당으로 정산받는 것이 원칙입니다. 다만 연차사용촉진 절차가 있었다면 달라질 수 있으니 인사팀에 산정 근거를 요청하세요.",
       },
     ],
-    related: [
-      "parental-leave-2026",
-      "work-reduction-guide",
-      "leave-insurance-premium",
-    ],
+    related: ["parental-leave-2026", "leave-insurance-premium"],
     cta: { href: "/calc/parental-leave", label: "육아휴직급여 계산하기" },
   },
 ];

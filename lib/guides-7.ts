@@ -102,7 +102,7 @@ export const guides7: Guide[] = [
         a: "아이별로 바우처가 각각 충전됩니다. 한 장의 카드에 합산되어 들어오는 경우가 일반적이지만, 아이별 만료일이 같으므로 관리에 큰 차이는 없습니다.",
       },
     ],
-    related: ["birth-benefits-2026", "birth-benefit-order", "postpartum-care"],
+    related: ["birth-benefits-2026", "postpartum-care"],
     cta: { href: "/calc/benefits", label: "받을 수 있는 지원금 계산하기" },
   },
 ];

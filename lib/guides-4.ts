@@ -87,6 +87,6 @@ export const guides4: Guide[] = [
         a: "표준 일정은 권장 시기라 며칠 밀려도 괜찮습니다. 오히려 접종 직후 장거리 이동은 피하는 편이 낫습니다.",
       },
     ],
-    related: ["vaccine-schedule-guide", "infant-checkup"],
+    related: ["vaccine-schedule-guide"],
   },
 ];

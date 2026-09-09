@@ -184,7 +184,7 @@ export default function WorkReductionPage() {
             </Link>
           </li>
           <li>
-            <Link href="/guide/work-reduction-guide" className="text-accent underline-offset-4 hover:underline">
+            <Link href="/guide/parental-leave-2026" className="text-accent underline-offset-4 hover:underline">
               육아기 근로시간 단축 제도 가이드 →
             </Link>
           </li>

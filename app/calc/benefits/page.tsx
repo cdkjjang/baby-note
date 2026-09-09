@@ -185,7 +185,7 @@ export default function BenefitsPage() {
             </Link>
           </li>
           <li>
-            <Link href="/guide/parent-vs-child-allowance" className="text-accent underline-offset-4 hover:underline">
+            <Link href="/guide/birth-benefits-2026" className="text-accent underline-offset-4 hover:underline">
               부모급여 vs 아동수당 차이 →
             </Link>
           </li>

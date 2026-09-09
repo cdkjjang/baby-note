@@ -78,7 +78,7 @@ export const guides5: Guide[] = [
         a: "의료비는 총급여의 일정 비율을 넘는 금액부터 공제되므로, 소득이 적은 쪽으로 몰면 문턱을 넘기 쉬워 유리한 경우가 많습니다. 다른 공제와는 반대 방향입니다.",
       },
     ],
-    related: ["pregnancy-support", "birth-benefit-order"],
+    related: ["pregnancy-support", "birth-benefits-2026"],
     cta: { href: "/calc/benefits", label: "출산·육아 지원금 계산하기" },
   },
 ];
