@@ -11,14 +11,13 @@ export default function PrivacyPage() {
   return (
     <div className="space-y-6 text-[15px] leading-relaxed">
       <h1 className="text-2xl font-extrabold">개인정보처리방침</h1>
-      <p className="text-sm text-muted">시행일: 2026-07-19</p>
+      <p className="text-sm text-muted">시행일: 2026-07-19 · 최종 개정: 2026-09-10</p>
 
       <section className="space-y-3">
         <h2 className="text-lg font-bold">1. 수집하는 개인정보</h2>
         <p>
           {SITE_NAME}는 회원가입 없이 이용하는 서비스로, 이름·연락처 등 개인정보를
-          직접 수집하지 않습니다. 계산기에 입력한 아이 생년월일·급여·근로시간은
-          이용자의 브라우저 안에서만 처리되며 서버로 전송·저장되지 않습니다.
+          직접 수집하지 않습니다. 계산기에 입력한 아이의 생년월일과 출생 순위, 통상임금, 근로시간은 이용자의 브라우저 안에서만 처리되며 서버로 전송·저장되지 않습니다. 예방접종 일정도 생년월일로 브라우저에서 계산합니다.
         </p>
       </section>
 
