@@ -3,7 +3,7 @@ import type { Guide } from "./guide-types";
 export const guides3: Guide[] = [
   {
     slug: "leave-insurance-premium",
-    title: "육아휴직 중 건강보험료·국민연금은 어떻게 되나 — 안 내도 되는 게 아닙니다",
+    title: "육아휴직 중 건강보험료·국민연금 — 안 내도 되는 게 아닙니다",
     description:
       "휴직하면 월급이 끊기는데 보험료는 계속 나옵니다. 건강보험료 경감 신청, 국민연금 납부예외의 함정, 복직 후 정산까지 순서대로 정리했습니다.",
     updated: "2026-08-17",
