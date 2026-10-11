@@ -9,8 +9,11 @@
 //       (2026년 1월분부터 소급. 지급 기간은 출생월부터 상한 나이 생일이 속한 달의 전월까지)
 //
 //   * 지자체별 출산장려금은 지역마다 크게 달라 여기서 합산하지 않는다(안내만).
-//   * 아동수당 비수도권·인구감소지역 추가 지급(제4조 ⑥, 월 2만원 범위)은 금액이
-//     대통령령이라 계산에 넣지 않는다(안내만).
+//   * 아동수당 지역 추가 지급(법 제4조 ⑥, 시행령 제2조 ② — 2026.1월분부터 소급):
+//     인구감소지역 월 1만원(복지부 고시 지역은 2만원), 그 밖의 비수도권 월 5천원.
+//     인구감소지역에서 지역사랑상품권으로 받으면 월 1만원 상당을 더 준다(법 제4조 ⑦).
+//     거주지 입력이 없어 합계에는 넣지 않는다(안내만). 2026-10-11 전에는 "금액이 대통령령이라
+//     모른다"고 적고 있었는데, 2026.3.27 개정 시행령이 금액을 정했다.
 
 export const FIRST_MEET = {
   first: 2_000_000,
@@ -59,7 +62,12 @@ export function childAllowanceAgeLimit(year: number): number {
  *
  * 상한 나이가 해마다 한 살씩 오르므로 "상한 × 12"로 끝나지 않는다. 달마다
  * 그 달이 속한 해의 상한과 아이의 만 나이(생일이 속한 달부터 한 살 더한 것으로 본다)를
- * 비교한다. 2017년생처럼 상한과 같이 나이를 먹는 아이는 해마다 생일 전 몇 달만 받는다.
+ * 비교한다.
+ *
+ * ⚠️ 2017년생은 예외다 — 법 부칙(2026. 3. 20.) 제2조 제2항이 2026~2029년에는 **나이와
+ *    관계없이 1~12월 매월** 지급하도록 정했다. 상한과 같이 나이를 먹어 해마다 생일 이후
+ *    몇 달이 끊기는 것을 막으려는 특례다. 2026-10-11까지 이 특례를 빠뜨려 2017년 6월생을
+ *    30개월로 세고 있었다(맞는 값 58개월).
  */
 export function childAllowanceMonths(birthYear: number, birthMonth = 1): number {
   if (!Number.isInteger(birthMonth) || birthMonth < 1 || birthMonth > 12) {
@@ -74,7 +82,8 @@ export function childAllowanceMonths(birthYear: number, birthMonth = 1): number 
       const monthIndex = birthMonth - 1 + age * 12 + i;
       const year = birthYear + Math.floor(monthIndex / 12);
       if (year < CHILD_ALLOWANCE_FIRST_YEAR) continue;
-      if (age < childAllowanceAgeLimit(year)) months++;
+      const year2017Special = birthYear === 2017 && year >= 2026 && year <= 2029;
+      if (year2017Special || age < childAllowanceAgeLimit(year)) months++;
     }
   }
   return months;
@@ -115,8 +124,9 @@ export function calcBenefits(
     PARENT_ALLOWANCE.age0Monthly * PARENT_ALLOWANCE.monthsPerYear;
   const parentAllowanceAge1 =
     PARENT_ALLOWANCE.age1Monthly * PARENT_ALLOWANCE.monthsPerYear;
-  const childAllowanceTotal =
-    CHILD_ALLOWANCE.monthly * CHILD_ALLOWANCE.maxMonths;
+  // 출생 연도 단위로 받으므로 1월생으로 센다. 2025년 이후 출생은 월과 무관하게 같다.
+  const allowanceMonths = childAllowanceMonths(birthYear);
+  const childAllowanceTotal = CHILD_ALLOWANCE.monthly * allowanceMonths;
 
   const firstTwoYears = firstMeet + parentAllowanceAge0 + parentAllowanceAge1;
   const grandTotal = firstTwoYears + childAllowanceTotal;
@@ -125,6 +135,7 @@ export function calcBenefits(
     firstMeet,
     parentAllowanceAge0,
     parentAllowanceAge1,
+    childAllowanceMonths: allowanceMonths,
     childAllowanceTotal,
     firstTwoYears,
     grandTotal,

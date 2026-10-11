@@ -2,17 +2,21 @@
 //
 // ⚠️ 매년 갱신 대상(고용노동부) — 값 변경 시 테스트도 함께 갱신할 것.
 //   2026년 기준:
-//   - 최초 주 10시간 단축분: 통상임금 100%, 상한 월 250만원
-//   - 나머지 단축분:        통상임금 80%,  상한 월 160만원
+//   - 최초 주 10시간 단축분: 통상임금 100%, 상한 월 250만원, 하한 50만원
+//   - 나머지 단축분:        통상임금 80%,  상한 월 160만원, 하한 50만원
+//   (고용보험법 시행령 제104조의2 제2항 계산식 — 계산식은 이미지로만 실려 있다)
 //
-//   급여 = min(통상임금, 250만) × (최초10시간분 / 주소정근로시간)
-//        + min(통상임금×0.8, 160만) × (나머지단축분 / 주소정근로시간)
+//   급여 = clamp(통상임금, 50만, 250만) × (최초10시간분 / 주소정근로시간)
+//        + clamp(통상임금×0.8, 50만, 160만) × (나머지단축분 / 주소정근로시간)
+//   ⚠️ 2026-10-11까지 하한 50만을 빠뜨리고 있었다.
 
 export const FIRST10_RATE = 1.0;
 export const FIRST10_CAP = 2_500_000;
 export const REST_RATE = 0.8;
 export const REST_CAP = 1_600_000;
 export const FIRST10_HOURS = 10;
+/** 두 구간 공통 하한(월 통상임금 기준액) */
+export const BASE_FLOOR = 500_000;
 
 export interface WorkReductionResult {
   reducedHours: number; // 총 단축 시간(주)
@@ -57,12 +61,10 @@ export function calcWorkReduction(
   const first10Hours = Math.min(reduced, FIRST10_HOURS);
   const restHours = Math.max(reduced - FIRST10_HOURS, 0);
 
-  const first10Pay = Math.round(
-    Math.min(w * FIRST10_RATE, FIRST10_CAP) * (first10Hours / full)
-  );
-  const restPay = Math.round(
-    Math.min(w * REST_RATE, REST_CAP) * (restHours / full)
-  );
+  const first10Base = Math.max(Math.min(w * FIRST10_RATE, FIRST10_CAP), BASE_FLOOR);
+  const restBase = Math.max(Math.min(w * REST_RATE, REST_CAP), BASE_FLOOR);
+  const first10Pay = Math.round(first10Base * (first10Hours / full));
+  const restPay = Math.round(restBase * (restHours / full));
 
   return {
     ok: true,

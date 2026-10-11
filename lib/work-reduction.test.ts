@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  BASE_FLOOR,
   calcWorkReduction,
   FIRST10_CAP,
   REST_CAP,
@@ -9,6 +10,17 @@ describe("상수", () => {
   it("최초 10시간분 상한 250만·나머지 160만", () => {
     expect(FIRST10_CAP).toBe(2_500_000);
     expect(REST_CAP).toBe(1_600_000);
+  });
+  it("두 구간 하한 50만 (시행령 제104조의2 계산식)", () => {
+    expect(BASE_FLOOR).toBe(500_000);
+  });
+  it("통상임금이 낮으면 하한 50만을 기준으로 계산한다", () => {
+    // 통상임금 40만·주 40→20시간: 최초 10시간 50만×10/40=125,000, 나머지 50만×10/40=125,000
+    const r = calcWorkReduction(400_000, 40, 20);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.result.first10Pay).toBe(125_000);
+    expect(r.result.restPay).toBe(125_000);
   });
 });
 

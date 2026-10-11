@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { guides } from "./guides";
 import nextConfig from "../next.config";
-import { CHILD_ALLOWANCE } from "./benefits";
+import { childAllowanceAgeLimit } from "./benefits";
 
 /**
  * 가이드 데이터가 조용히 망가지는 것을 막는 테스트.
@@ -132,10 +132,10 @@ describe("가이드 데이터", () => {
 
 describe("가이드 본문의 고시값이 계산 엔진과 어긋나지 않는다", () => {
   it("아동수당을 만 8세로 쓴 글이 없다", () => {
-    // 2026년부터 만 9세 미만이다. lib/benefits.ts의 maxMonths 108이 그 기준.
+    // 2026년 기준 만 9세 미만이다(lib/benefits.ts의 CHILD_ALLOWANCE_AGE_BY_YEAR).
     // 통합 전에는 네 곳이 만 8세로 남아 있었다(가이드 셋 + 홈 시나리오 하나).
     // 쪼개져 있으면 각 글이 따로 읽혀 아무도 대조하지 않는다.
-    expect(CHILD_ALLOWANCE.maxMonths).toBe(108); // 만 9세 미만 = 108개월
+    expect(childAllowanceAgeLimit(2026)).toBe(9);
 
     const bad: string[] = [];
     for (const g of guides) {
@@ -145,6 +145,32 @@ describe("가이드 본문의 고시값이 계산 엔진과 어긋나지 않는�
         if (/아동수당/.test(m[0])) bad.push(`${g.slug}: "${m[0].trim()}"`);
       }
     }
+    expect(bad).toEqual([]);
+  });
+
+  it("아동수당 '만 9세 미만'을 쓴 글은 13세까지의 확대 일정도 밝힌다", () => {
+    // 2026-03-20 개정으로 해마다 한 살씩 늘어 2030년 13세 미만이 된다.
+    // "만 9세 미만"만 적으면 지금 태어난 아이가 108개월만 받는다고 읽힌다(실제 156개월).
+    // 글 단위로 본다 — 조각 매칭은 원칙을 지키는 문장까지 잡는다(아래 사후지급금 참조).
+    const finalAge = childAllowanceAgeLimit(2030);
+    const bad = guides
+      .filter((g) => {
+        const t = fullText(g);
+        return (
+          t.includes("아동수당") &&
+          /9세 미만/.test(t) &&
+          !t.includes(`${finalAge}세 미만`)
+        );
+      })
+      .map((g) => g.slug);
+    expect(bad).toEqual([]);
+  });
+
+  it("아동수당 총액을 옛 108개월 기준으로 쓴 글이 없다", () => {
+    // 옛 계산(만 9세 미만 × 12 = 108개월, 1,080만원)은 확대 전 값이다.
+    const bad = guides
+      .filter((g) => /108개월|1,080만/.test(fullText(g)))
+      .map((g) => g.slug);
     expect(bad).toEqual([]);
   });
 
@@ -191,5 +217,26 @@ describe("통합으로 사라진 URL의 301", () => {
       .filter((r) => sources.has(r.destination))
       .map((r) => `${r.source} → ${r.destination}`);
     expect(chained).toEqual([]);
+  });
+});
+
+describe("꺾쇠로 인용하지 않는다", () => {
+  it("<대학 동기>처럼 한글 꺾쇠가 본문에 없다", () => {
+    // 템플릿의 bold()가 <·>를 먼저 이스케이프하므로 꺾쇠 인용이 화면에
+    // 글자 그대로 나온다. 2026-09-26까지 전 노트에서 약 300곳이 그렇게
+    // 노출되고 있었다. 인용·강조는 작은따옴표로 쓸 것.
+    const bad: string[] = [];
+    for (const g of guides) {
+      const parts = [
+        ...g.intro,
+        ...g.sections.flatMap((s) => [s.heading, ...s.paragraphs, ...(s.list ?? [])]),
+        ...g.faq.flatMap((f) => [f.q, f.a]),
+      ];
+      for (const p of parts) {
+        const m = p.match(/<[^<>]*[가-힣][^<>]*>/);
+        if (m) bad.push(`${g.slug}: ${m[0]}`);
+      }
+    }
+    expect(bad).toEqual([]);
   });
 });

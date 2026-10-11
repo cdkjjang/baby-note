@@ -14,7 +14,10 @@ export default function BenefitsCalculator() {
     { label: "첫만남이용권 (출생 시 1회)", value: b.firstMeet },
     { label: "부모급여 0세 (월 100만 × 12)", value: b.parentAllowanceAge0 },
     { label: "부모급여 1세 (월 50만 × 12)", value: b.parentAllowanceAge1 },
-    { label: "아동수당 (월 10만 × 만 9세 미만)", value: b.childAllowanceTotal },
+    {
+      label: `아동수당 (월 10만 × ${b.childAllowanceMonths}개월, 만 13세 미만)`,
+      value: b.childAllowanceTotal,
+    },
   ];
 
   return (
@@ -29,7 +32,7 @@ export default function BenefitsCalculator() {
         onChange={setOrder}
       />
 
-      <ResultCard title="만 9세까지 받는 현금성 지원 합계">
+      <ResultCard title="2026년생이 만 13세까지 받는 현금성 지원 합계">
         <p className="text-3xl font-extrabold text-accent-strong">
           총 {formatWon(b.grandTotal)}
         </p>
@@ -58,7 +61,8 @@ export default function BenefitsCalculator() {
         <p className="mt-4 border-t border-border-soft pt-4 text-sm leading-relaxed text-muted">
           전국 공통 현금성 지원만 합산한 값입니다. 지자체 출산장려금은 지역마다
           크게 달라 포함하지 않았으니 거주지 시·군·구청에서 별도로 확인하세요.
-          부모급여·아동수당은 출생신고 때 함께 신청하면 출생월부터 받습니다.
+          아동수당 지역 추가분(인구감소지역 월 1만원·고시 지역 2만원, 그 밖의 비수도권 월
+          5천원)도 거주지에 따라 달라 합계에 넣지 않았습니다. 부모급여·아동수당은 출생신고 때 함께 신청하면 출생월부터 받습니다.
         </p>
       </ResultCard>
     </section>

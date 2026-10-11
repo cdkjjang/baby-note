@@ -22,13 +22,13 @@ const STATIC_UPDATED = "2026-08-21";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: CONTENT_UPDATED, changeFrequency: "weekly", priority: 1 },
-    { url: `${SITE_URL}/calc/parental-leave`, lastModified: CALC_UPDATED, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE_URL}/calc/benefits`, lastModified: CALC_UPDATED, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/calc/parental-leave`, lastModified: "2026-10-11", changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/calc/benefits`, lastModified: "2026-10-11", changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/calc/vaccine`, lastModified: CALC_UPDATED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/calc/work-reduction`, lastModified: CALC_UPDATED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/guide`, lastModified: CONTENT_UPDATED, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/about`, lastModified: STATIC_UPDATED, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${SITE_URL}/editorial`, lastModified: STATIC_UPDATED, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${SITE_URL}/editorial`, lastModified: "2026-10-11", changeFrequency: "yearly", priority: 0.4 },
     { url: `${SITE_URL}/privacy`, lastModified: STATIC_UPDATED, changeFrequency: "yearly", priority: 0.2 },
     { url: `${SITE_URL}/terms`, lastModified: STATIC_UPDATED, changeFrequency: "yearly", priority: 0.2 },
   ];

@@ -15,9 +15,9 @@ describe("상수", () => {
     expect(STANDARD_TIERS[1].cap).toBe(2_000_000);
     expect(STANDARD_TIERS[2].cap).toBe(1_600_000);
   });
-  it("6+6 첫 6개월 상한: 200~450만", () => {
+  it("6+6 첫 6개월 상한: 250·250·300·350·400·450만 (시행령 제95조의3)", () => {
     expect(COUPLE_66_CAPS).toEqual([
-      2_000_000, 2_500_000, 3_000_000, 3_500_000, 4_000_000, 4_500_000,
+      2_500_000, 2_500_000, 3_000_000, 3_500_000, 4_000_000, 4_500_000,
     ]);
   });
 });
@@ -77,7 +77,7 @@ describe("calcParentalLeave — 6+6(couple66)", () => {
     expect(out.ok).toBe(true);
     if (!out.ok) return;
     const m = out.result.monthly;
-    expect(m[0].amount).toBe(2_000_000); // 1개월 상한 200만
+    expect(m[0].amount).toBe(2_500_000); // 1개월 상한 250만
     expect(m[3].amount).toBe(3_500_000); // 4개월 상한 350만
     expect(m[5].amount).toBe(4_500_000); // 6개월 상한 450만
     // 7개월째: 일반 복귀 80%=400만 > 상한 160만 → 160만
