@@ -9,7 +9,7 @@ const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-6029964
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — 육아휴직급여·부모급여·예방접종, 한곳에서 확인`,
+    default: `육아휴직급여·부모급여·아동수당 계산과 예방접종 일정 | ${SITE_NAME}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
