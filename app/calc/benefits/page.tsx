@@ -70,9 +70,9 @@ export default function BenefitsPage() {
       </p>
       <BenefitsCalculator />
 
-      <NextStep calc="/calc/benefits" />
-
       <AdSlot slot="benefits-below-tool" />
+
+      <NextStep calc="/calc/benefits" />
 
       <section className="mt-10 space-y-4 text-[15px] leading-relaxed">
         <h2 className="text-xl font-bold">출산하면 받는 현금 지원 3종</h2>
