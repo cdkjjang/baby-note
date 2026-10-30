@@ -88,6 +88,9 @@ export default function BenefitsPage() {
           60일 안에 신청하면 출생월부터 소급 지급되니, 출생신고 때 함께 처리하세요.
         </p>
 
+        {/* 두 번째 광고 자리 — 해설 끝, 자주 묻는 질문 앞 */}
+        <AdSlot slot="calc-mid" />
+
         <h2 className="mt-8 text-xl font-bold">자주 묻는 질문</h2>
         <dl className="space-y-4">
           {faq.map(({ q, a }) => (
