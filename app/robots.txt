@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+
+#다음 웹마스터 도구 소유확인 (webmaster.daum.net)
+#DaumWebMasterTool:c3094644bfc9b23b89822bb9876ef7ee51ede2f4c696e4af7b251178e5107f36:CNSJIIGOISrSV2aL3hPlgQ==
+
+Sitemap: https://baby.lifebanjang.com/sitemap.xml
