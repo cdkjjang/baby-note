@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
 import NextStep from "@/components/NextStep";
+import ContextualOffers from "@/components/ContextualOffers";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import VaccineSchedule from "@/components/VaccineSchedule";
@@ -67,6 +68,8 @@ export default function VaccinePage() {
       <VaccineSchedule />
 
       <NextStep calc="/calc/vaccine" />
+
+      <ContextualOffers calc="vaccine" />
 
       <AdSlot slot="vaccine-below-tool" />
 

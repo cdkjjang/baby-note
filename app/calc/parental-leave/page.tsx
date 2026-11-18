@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
 import NextStep from "@/components/NextStep";
+import ContextualOffers from "@/components/ContextualOffers";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import ParentalLeaveCalculator from "@/components/ParentalLeaveCalculator";
@@ -69,6 +70,8 @@ export default function ParentalLeavePage() {
       <AdSlot slot="parental-leave-below-tool" />
 
       <NextStep calc="/calc/parental-leave" />
+
+      <ContextualOffers calc="parental-leave" />
 
       <section className="mt-10 space-y-4 text-[15px] leading-relaxed">
         <h2 className="text-xl font-bold">2025년 대개편으로 이렇게 달라졌습니다</h2>

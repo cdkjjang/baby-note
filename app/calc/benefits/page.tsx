@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CalcGuides from "@/components/CalcGuides";
 import NextStep from "@/components/NextStep";
+import ContextualOffers from "@/components/ContextualOffers";
 import RelatedTools from "@/components/RelatedTools";
 import Link from "next/link";
 import BenefitsCalculator from "@/components/BenefitsCalculator";
@@ -73,6 +74,8 @@ export default function BenefitsPage() {
       <AdSlot slot="benefits-below-tool" />
 
       <NextStep calc="/calc/benefits" />
+
+      <ContextualOffers calc="benefits" />
 
       <section className="mt-10 space-y-4 text-[15px] leading-relaxed">
         <h2 className="text-xl font-bold">출산하면 받는 현금 지원 3종</h2>
