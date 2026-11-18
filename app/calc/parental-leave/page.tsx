@@ -8,6 +8,7 @@ import ParentalLeaveCalculator from "@/components/ParentalLeaveCalculator";
 import AdSlot from "@/components/AdSlot";
 import CalcNotes from "@/components/CalcNotes";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { jsonLdScript } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "육아휴직급여 계산기 — 2026 상한·6+6 부모육아휴직제",
@@ -58,7 +59,7 @@ export default function ParentalLeavePage() {
     <div>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <h1 className="mb-2 text-2xl font-extrabold">육아휴직급여 계산기</h1>
       <p className="mb-6 text-muted">

@@ -7,6 +7,7 @@ import WorkReductionCalculator from "@/components/WorkReductionCalculator";
 import AdSlot from "@/components/AdSlot";
 import CalcNotes from "@/components/CalcNotes";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { jsonLdScript } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "육아기 근로시간 단축급여 계산기 — 2026 상한 반영",
@@ -57,7 +58,7 @@ export default function WorkReductionPage() {
     <div>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <h1 className="mb-2 text-2xl font-extrabold">육아기 근로시간 단축급여 계산기</h1>
       <p className="mb-6 text-muted">
